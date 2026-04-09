@@ -1,0 +1,6 @@
+1. Для my_strchr:
+Hello World
+2. Для my_strstr:
+I love programming in C
+3. Для my_strlwr:
+HELLO, Students!
