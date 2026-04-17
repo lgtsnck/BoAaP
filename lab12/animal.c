@@ -1,5 +1,6 @@
 #include "animal.h"
 
+// Заполняем массив структур данными из текстового файла
 int ReadAnimalsFromFile(Animal *arr, int maxCount, const char *filename) {
     FILE *f = fopen(filename, "r");
     if (!f) {
@@ -8,7 +9,8 @@ int ReadAnimalsFromFile(Animal *arr, int maxCount, const char *filename) {
     }
 
     int count = 0;
-    // Читаем, пока не достигнем конца файла или лимита в 20 записей
+    // Возвращаем количество успешно считанных полей.
+    // Вид, среда обитания, хищник/травоядный, популяция.
     while (count < maxCount && fscanf(f, "%s %s %d %d",
            arr[count].species, arr[count].habitat,
            &arr[count].isPredator, &arr[count].population) == 4) {
@@ -16,9 +18,10 @@ int ReadAnimalsFromFile(Animal *arr, int maxCount, const char *filename) {
            }
 
     fclose(f);
-    return count;
+    return count; // Возвращаем, сколько реально животных в массив
 }
 
+// Записываем в файл только травоядных-редкостей
 void SaveFilteredToFile(Animal *arr, int count, const char *filename) {
     FILE *f = fopen(filename, "w");
     if (!f) return;
@@ -26,8 +29,9 @@ void SaveFilteredToFile(Animal *arr, int count, const char *filename) {
     fprintf(f, "--- Травоядные с популяцией менее 10 000 ---\n");
     int found = 0;
     for (int i = 0; i < count; i++) {
-        // Условие по варианту: Травоядное (0) И популяция < 10000
+        // Травоядный и популяция меньше 10к
         if (arr[i].isPredator == 0 && arr[i].population < 10000) {
+            // %-15s — выравнивание текста по левому краю, чтобы  была ровная таблица
             fprintf(f, "Вид: %-15s | Обитание: %-15s | Популяция: %d\n",
                     arr[i].species, arr[i].habitat, arr[i].population);
             found = 1;

@@ -10,6 +10,7 @@ int main() {
 
     printf("Обработка файла %s...\n", input);
 
+    // Основная логика вынесена в функцию GenerateHTML.
     GenerateHTML(input, output);
 
     printf("Результат сохранен в %s\n", output);

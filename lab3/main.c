@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <windows.h>
-#include "bezier_curve.h"
+#include "approx_curve.h"
 
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam) {
     switch (message) {
@@ -23,10 +23,10 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam) 
 }
 
 int main(void) {
-    printf("Запуск графического окна...\n");
+   // printf("Запуск графического окна...\n");
 
     HINSTANCE hInstance = GetModuleHandle(NULL);
-    const char CLASS_NAME[] = "HouseWindowClass";
+    const char CLASS_NAME[] = "lab3";
 
     WNDCLASS wc = { 0 };
     wc.lpfnWndProc   = WndProc;
